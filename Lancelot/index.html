@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://e7.pngegg.com/pngimages/516/498/png-clipart-black-knight-helmet-logo-illustration-middle-ages-knight-helmet-computer-icons-chivalry-knight-logo-head.png">
+    <title>Lancelot Du Lac</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .section {
+            height: 100vh;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: filter 0.3s ease;
+        }
+
+        #section1 {
+            background-image: url('diapolancelot1.png');
+        }
+
+        #section2 {
+            background-image: url('diapolancelot2.png');
+        }
+
+        #section3 {
+            background-image: url('diapolancelot3.png');
+        }
+       
+        #section4 {
+            background-image: url('diapolancelot4.png');
+        }
+       
+        #section5 {
+            background-image: url('diapolancelot5.png');
+        }
+       
+        #section6 {
+            background-image: url('diapolancelot6.png');
+        }
+       
+        #section7 {
+            background-image: url('diapolancelot7.png');
+        }
+       
+        #scrollDownIcon {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        #menuIcon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        #searchIcon {
+            position: fixed;
+            top: 20px;
+            right: 60px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        #menu {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 20;
+        }
+
+        #menu a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+        }
+
+        #menu a:hover {
+            text-decoration: underline;
+        }
+
+        .blurred {
+            filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="section" id="section1"></div>
+    <div class="section" id="section2"></div>
+    <div class="section" id="section3"></div>
+    <div class="section" id="section4"></div>
+    <div class="section" id="section5"></div>
+    <div class="section" id="section6"></div>
+    <div class="section" id="section7"></div>
+
+    <i id="scrollDownIcon" class="fas fa-arrow-down"></i>
+    <i id="searchIcon" class="fas fa-search"></i>
+    <i id="menuIcon" class="fas fa-bars"></i>
+
+    <div id="menu">
+        <a href="https://wikipédia.com" target="_blank">Wikipédia</a>
+        <a href="https://essentiels.bnf.fr/fr/" target="_blank">BNF Essentiels</a>
+        <a href="https://fr.wikipedia.org/wiki/Légende_arthurienne" >Le livre de la légende Arthurienne</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('.section');
+            const scrollDownIcon = document.getElementById('scrollDownIcon');
+            const menuIcon = document.getElementById('menuIcon');
+            const menu = document.getElementById('menu');
+            const searchIcon = document.getElementById('searchIcon');
+            let currentSection = 0;
+
+            scrollDownIcon.addEventListener('click', function () {
+                currentSection = (currentSection + 1) % sections.length;
+                sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+            });
+
+            menuIcon.addEventListener('click', function () {
+                if (menu.style.display === 'block') {
+                    menu.style.display = 'none';
+                    sections.forEach(section => section.classList.remove('blurred'));
+                } else {
+                    menu.style.display = 'block';
+                    sections.forEach(section => section.classList.add('blurred'));
+                }
+            });
+
+            searchIcon.addEventListener('click', function () {
+                window.location.href = 'wiki.html';
+            });
+
+            document.addEventListener('click', function (event) {
+                if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
+                    menu.style.display = 'none';
+                    sections.forEach(section => section.classList.remove('blurred'));
+                }
+            });
+        });
+    </script>
+</body>
+</html>
